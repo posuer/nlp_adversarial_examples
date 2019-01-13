@@ -4,7 +4,8 @@ Author: Moustafa Alzantot (malzantot@ucla.edu)
 
 import numpy as np
 import pickle
-
+import io
+'''
 def loadGloveModel(gloveFile):
     print ("Loading Glove Model")
     f = open(gloveFile,'r')
@@ -17,6 +18,17 @@ def loadGloveModel(gloveFile):
         model[word] = embedding
     print ("Done.",len(model)," words loaded!")
     return model
+    '''
+def loadGloveModel(fname):
+    print ("Loading FastText Model")
+    fin = io.open(fname, 'r', encoding='utf-8', newline='\n', errors='ignore')
+    #n, d = map(int, fin.readline().split())
+    data = {}
+    for line in fin:
+        tokens = line.rstrip().split(' ')
+        data[tokens[0]] = map(float, tokens[1:])
+    print ("Done.",len(data)," words loaded!")
+    return data
 
 def save_glove_to_pickle(glove_model, file_name):
     with open(file_name, 'wb') as f:
