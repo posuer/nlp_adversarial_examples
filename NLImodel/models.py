@@ -16,7 +16,7 @@ from keras.constraints import max_norm
 
 np.random.seed(0)
 
-class Transfermodel(object):
+class NLImodel(object):
 	def __init__(self,setting,is_train=True):
 		self.lr = setting.lr
 		self.word_dim = setting.word_dim
@@ -104,5 +104,5 @@ if __name__ == "__main__":
 	
 	setting = settings.Setting()
 
-	Tars = Transfermodel(setting)
+	Tars = NLImodel(setting)
 	Tars.train_model(params.source_language)
